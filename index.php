@@ -203,7 +203,7 @@ $adminSeesEmptyMenu = (!$productsFromDb && !$menuError) ? admin_session_valid($p
       </a>
       <nav class="hidden md:flex items-center gap-8 text-[15px] font-medium">
         <a href="#menu" class="underline-grow">Menu</a>
-        <a href="#story" class="underline-grow">Our Story</a>
+        <a href="#story" class="underline-grow">Ours Story</a>
         <a href="#visit" class="underline-grow">Visit</a>
       </nav>
       <div class="flex items-center gap-3">
