@@ -1,0 +1,38 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      KAPIHAN_DB_HOST: db
+      KAPIHAN_DB_NAME: kapihan
+      KAPIHAN_DB_USER: kapihan
+      KAPIHAN_DB_PASS: ${DB_PASS:-palitan-ito}
+      KAPIHAN_ADMIN_PASSWORD: ${ADMIN_PASSWORD:-palitan-ito-din}
+      KAPIHAN_TIMEZONE: ${TZ_NAME:-Asia/Manila}
+      KAPIHAN_ADMIN_RESET_KEY: ${ADMIN_RESET_KEY:-}
+    volumes:
+      - .:/var/www/html
+      - uploads:/var/www/html/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: kapihan
+      MYSQL_USER: kapihan
+      MYSQL_PASSWORD: ${DB_PASS:-palitan-ito}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS:-palitan-ang-root}
+    volumes:
+      - dbdata:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+volumes:
+  dbdata:
+  uploads:

@@ -1,0 +1,4 @@
+# Larawan lang ang puwede dito — hindi kailanman tatakbo ang PHP
+<FilesMatch "\.(php|phtml|php[0-9])$">
+  Require all denied
+</FilesMatch>

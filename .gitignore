@@ -1,0 +1,8 @@
+config.php
+.env
+uploads/products/*
+!uploads/products/.htaccess
+!uploads/products/index.html
+uploads/settings/*
+!uploads/settings/.htaccess
+!uploads/settings/index.html
